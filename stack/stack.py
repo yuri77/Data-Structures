@@ -9,24 +9,49 @@ return elements in Last In First Out order.
    Make sure the Stack tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
-"""
 
+When accessing tail, array operation is O(1)
+where as SinglylinkedList has to traverse to the tail where it takes O(n) operation
+Array is faster for implementing a stack
+   
+"""
+from singly_linked_list import LinkedList
 # array method
+
+
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = []
+
+#     def __len__(self):
+#         return self.size
+
+#     def push(self, value):
+#         self.storage.append(value)
+#         self.size += 1
+
+#     def pop(self):
+#         if self.size > 0:
+#             self.size -= 1
+#             return self.storage.pop()
 
 
 class Stack:
     def __init__(self):
         self.size = 0
-        self.storage = []
+        self.storage = LinkedList()
 
     def __len__(self):
         return self.size
 
     def push(self, value):
-        self.storage.append(value)
+        self.storage.add_to_tail(value)
         self.size += 1
 
     def pop(self):
         if self.size > 0:
             self.size -= 1
-            return self.storage.pop()
+            return self.storage.remove_from_tail()
+        else:
+            return None

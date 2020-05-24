@@ -44,6 +44,7 @@ class LinkedList:
                 self.head = None
             else:
                 prev.next = None
+            self.tail = prev
             return current.value
 
     def contains(self, value):

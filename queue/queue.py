@@ -12,12 +12,18 @@ return elements in First In First Out order.
    
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
+
+linked list approach is faster with O(1). It can access the head right away
+   Array pop method takes O(n) when the first element is taken out from the array, underlying index needs to be re-indexed and shifted. 
+   Linked list approach is faster in Queue 
 """
+
+
 class Queue:
     def __init__(self):
         self.size = 0
         # self.storage = ?
-    
+
     def __len__(self):
         pass
 
