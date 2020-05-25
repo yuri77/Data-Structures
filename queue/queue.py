@@ -22,13 +22,33 @@ linked list approach is faster with O(1). It can access the head right away
 class Queue:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = []
 
     def __len__(self):
-        pass
+        return self.size
 
     def enqueue(self, value):
-        pass
+        self.size += 1
+        self.storage.append(value)
 
     def dequeue(self):
-        pass
+        if self.size > 0:
+            self.size -= 1
+            return self.storage.pop(0)
+        else:
+            return None
+
+
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         # self.storage = ?
+
+#     def __len__(self):
+#         pass
+
+#     def enqueue(self, value):
+#         pass
+
+#     def dequeue(self):
+#         pass
