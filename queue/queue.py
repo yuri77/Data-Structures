@@ -18,6 +18,7 @@ linked list approach is faster with O(1). It can access the head right away
    Linked list approach is faster in Queue 
 """
 from singly_linked_list import LinkedList
+from stack import Stack
 
 # class Queue:
 #     def __init__(self):
@@ -39,21 +40,47 @@ from singly_linked_list import LinkedList
 #             return None
 
 
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = LinkedList()
+
+#     def __len__(self):
+#         return self.size
+
+#     def enqueue(self, value):
+#         self.size += 1
+#         self.storage.add_to_tail(value)
+
+#     def dequeue(self):
+#         if self.size > 0:
+#             self.size -= 1
+#             return self.storage.remove_head()
+#         else:
+#             return None
+
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.first_stack = Stack()
+        self.second_stack = Stack()
 
     def __len__(self):
         return self.size
 
     def enqueue(self, value):
         self.size += 1
-        self.storage.add_to_tail(value)
+        self.first_stack.push(value)
 
     def dequeue(self):
-        if self.size > 0:
-            self.size -= 1
-            return self.storage.remove_head()
-        else:
+        if self.size == 0:
             return None
+
+        self.size -= 1
+        if self.second_stack.size == 0:
+            while self.first_stack.size:
+                value = self.first_stack.pop()
+                self.second_stack.push(value)
+            return self.second_stack.pop()
+        if self.second_stack.size > 0:
+            return self.second_stack.pop()
