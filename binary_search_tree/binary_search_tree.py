@@ -9,6 +9,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,20 +19,58 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+
+        # compare to the root node, if smaller insert to left
+        # otherwise insert to right
+        if value < self.value:
+            if not self.left:
+                self.left = BSTNode(value)
+            else:
+                return self.left.insert(value)
+        elif value >= self.value:
+            if not self.right:
+                self.right = BSTNode(value)
+            else:
+                return self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # end case when target is equal to the value
+        if target == self.value:
+            return True
+        else:
+            # case if target is smaller than current node
+            if target < self.value:
+                if not self.left:
+                    return False
+                else:
+                    return self.left.contains(target)
+            # case when target is larger than current node
+            else:
+                if not self.right:
+                    return False
+                else:
+                    return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        max_value = self.value
+        # check right side only because right side contains nodes that are larger in value
+        # end case-> if there is no right side, then current node is the largest value
+        if not self.right:
+            return max_value
+        else:
+            return self.right.get_max()
 
     # Call the function `fn` on the value of each node
+
     def for_each(self, fn):
-        pass
+        fn(self.value)
+        if self.right:
+            return self.right.for_each(fn)
+        if self.left:
+            return self.left.for_each(fn)
 
     # Part 2 -----------------------
 
