@@ -26,12 +26,12 @@ class BSTNode:
             if not self.left:
                 self.left = BSTNode(value)
             else:
-                return self.left.insert(value)
+                self.left.insert(value)
         elif value >= self.value:
             if not self.right:
                 self.right = BSTNode(value)
             else:
-                return self.right.insert(value)
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -68,9 +68,9 @@ class BSTNode:
     def for_each(self, fn):
         fn(self.value)
         if self.right:
-            return self.right.for_each(fn)
+            self.right.for_each(fn)
         if self.left:
-            return self.left.for_each(fn)
+            self.left.for_each(fn)
 
     # Part 2 -----------------------
 
